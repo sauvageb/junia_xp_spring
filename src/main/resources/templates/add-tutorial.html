@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+
+<h1>Ajout d'un tutoriel</h1>
+<form th:action="@{/tutorials/add}" th:object="${newTuto}" method="post">
+    <label for="name">Nom</label>
+    <input id="name" type="text" th:field="*{name}" placeholder="C#">
+
+    <label for="createdDate">Date</label>
+    <input id="createdDate" type="date" th:field="*{createdDate}">
+
+    <button type="submit">Ajouter</button>
+</form>
+
 </body>
 </html>

@@ -6,6 +6,9 @@
     <title>Title</title>
 </head>
 <body>
+<a th:href="@{/tutorials}">Tutoriels</a>
+<a th:href="@{/tutorials/add}">Nouveau tutoriel</a>
+
 <h1>Tutoriels :</h1>
 
 <ul th:each="tuto : ${tutos}">

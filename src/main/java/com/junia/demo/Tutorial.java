@@ -8,6 +8,9 @@ public class Tutorial {
     private String name;
     private LocalDate createdDate;
 
+    public Tutorial() {
+    }
+
     public Tutorial(Long id, String name, LocalDate createdDate) {
         this.id = id;
         this.name = name;
