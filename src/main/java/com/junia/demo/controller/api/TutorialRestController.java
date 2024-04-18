@@ -1,5 +1,6 @@
-package com.junia.demo;
+package com.junia.demo.controller.api;
 
+import com.junia.demo.repository.entity.Tutorial;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

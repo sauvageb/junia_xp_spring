@@ -1,5 +1,6 @@
-package com.junia.demo;
+package com.junia.demo.controller;
 
+import com.junia.demo.repository.entity.Tutorial;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

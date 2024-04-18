@@ -1,9 +1,17 @@
-package com.junia.demo;
+package com.junia.demo.repository.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 import java.time.LocalDate;
 
+@Entity
 public class Tutorial {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private LocalDate createdDate;
