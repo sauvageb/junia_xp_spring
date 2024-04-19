@@ -1,33 +1,27 @@
 package com.junia.demo.controller.api;
 
 import com.junia.demo.repository.entity.Tutorial;
+import com.junia.demo.service.TutorialService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api/tutorials")
 public class TutorialRestController {
 
-    private List<Tutorial> tutorialList;
+    @Autowired
+    private TutorialService tutorialService;
 
-    public TutorialRestController() {
-        tutorialList = new ArrayList<>();
-        tutorialList.add(new Tutorial(1L, "Spring", LocalDate.now()));
-    }
-
-    @GetMapping("/api/tutorials/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Tutorial> fetchById(@PathVariable("id") Long id) {
-        Optional<Tutorial> optTutorial = tutorialList
-                .stream()
-                .filter(t -> t.getId().equals(id))
-                .findFirst();
+
+        Optional<Tutorial> optTutorial = tutorialService.fetchById(id);
+
         if (optTutorial.isPresent()) {
             return ResponseEntity
                     .status(HttpStatus.OK)
@@ -40,12 +34,22 @@ public class TutorialRestController {
 
     }
 
-
-    @GetMapping("/api/tutorials")
+    @GetMapping
     public ResponseEntity<List<Tutorial>> getTutorials() {
+        List<Tutorial> tutorialList = tutorialService.fetchTutorials();
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(tutorialList);
+    }
+
+    @PostMapping
+    public ResponseEntity<Tutorial> addTutorial(@RequestBody Tutorial tuto) {
+
+        Tutorial createdTuto = tutorialService.addTutorial(tuto);
+
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(createdTuto);
     }
 
 

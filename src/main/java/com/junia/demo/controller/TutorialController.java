@@ -2,6 +2,7 @@ package com.junia.demo.controller;
 
 import com.junia.demo.repository.TutorialRepository;
 import com.junia.demo.repository.entity.Tutorial;
+import com.junia.demo.service.TutorialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +15,7 @@ import java.util.List;
 public class TutorialController {
 
     @Autowired
-    private TutorialRepository tutorialRepository;
+    private TutorialService tutorialService;
 
     @GetMapping("/tutorials/add")
     public String displayAddForm(Model model) {
@@ -24,13 +25,13 @@ public class TutorialController {
 
     @PostMapping("/tutorials/add")
     public String submitAddForm(Tutorial tutorial) {
-        tutorialRepository.save(tutorial);
+        tutorialService.addTutorial(tutorial);
         return "redirect:/tutorials";
     }
 
     @GetMapping("/tutorials") // Défini l'url /tutorials
     public String displayTutorialList(Model model) {
-        List<Tutorial> tutorialList = (List<Tutorial>) tutorialRepository.findAll();
+        List<Tutorial> tutorialList = tutorialService.fetchTutorials();
 
         // Ajout de mes données dans la vue (Model)
         model.addAttribute("tutos", tutorialList);
