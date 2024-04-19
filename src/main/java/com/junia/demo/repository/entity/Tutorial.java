@@ -1,6 +1,7 @@
 package com.junia.demo.repository.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
@@ -10,9 +11,12 @@ public class Tutorial {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotNull
     private String name;
+    @NotNull
     private String content;
     private LocalDate createdDate;
+    @NotNull
     @ManyToOne
     private User author;
 

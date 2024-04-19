@@ -2,6 +2,7 @@ package com.junia.demo.controller.api;
 
 import com.junia.demo.repository.entity.Tutorial;
 import com.junia.demo.service.TutorialService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +44,7 @@ public class TutorialRestController {
     }
 
     @PostMapping
-    public ResponseEntity<Tutorial> addTutorial(@RequestBody Tutorial tuto) {
+    public ResponseEntity<Tutorial> addTutorial(@Valid @RequestBody Tutorial tuto) {
 
         Tutorial createdTuto = tutorialService.addTutorial(tuto);
 
